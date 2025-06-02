@@ -2,6 +2,16 @@
 
 setlocal enabledelayedexpansion
 
+set "migration_name=______"
+
+if "%~1"=="help" (
+    echo ef-migrator: you can input name of your new migration as first parameter or do nothing.
+    exit /b 1
+)
+if NOT "%~1"=="" (
+    set "migration_name=%~1"
+)
+
 set "current_dir=%cd%"
 set "db_conn_value="
 set "program_directory="
@@ -59,7 +69,7 @@ echo program directory: !result_program_directory!
 echo migrations folder: !result_migrations_directory!
 
 echo here is your strings (you can copy it):
-echo dotnet ef migrations add "______" -s "!result_program_directory!" -p "!result_migrations_directory!"
+echo dotnet ef migrations add "!migration_name!" -s "!result_program_directory!" -p "!result_migrations_directory!"
 echo dotnet ef database update -s "!result_program_directory!" -p "!result_migrations_directory!" --connection "!result_db_conn!"
 
 endlocal
