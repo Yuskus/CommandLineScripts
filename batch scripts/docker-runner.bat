@@ -20,7 +20,7 @@ echo docker-runner: executing docker compose build (without cache)
 docker-compose build --no-cache
 
 echo docker-runner: executing docker compose up
-docker-compose up
+docker-compose up -d
 
 echo docker-runner: ended
 
