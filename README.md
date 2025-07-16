@@ -7,7 +7,7 @@
 
 ## powershell
 
-- encoder-utf8bom-to-utf8
+- find-cyrillic
 
 ## one-line
 
