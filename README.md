@@ -4,6 +4,7 @@
 - git-rebaser
 - ef-migrator
 - bios-runner
+- start-workday
 
 ## powershell
 
