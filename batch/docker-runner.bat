@@ -13,6 +13,7 @@ if %errorlevel%==0 (
 )
 
 :run-docker
+wsl --update
 if exist "%docker_path%" (
     start "" "%docker_path%"
     timeout /t 10 >nul
@@ -27,14 +28,11 @@ if %errorlevel% neq 0 (
 
 echo docker-runner: started
 
-echo docker-runner: executing dotnet build
-dotnet build || (echo dotnet build failed & exit /b 1)
-
 echo docker-runner: executing docker compose down
 docker-compose down || (echo docker-compose down failed & exit /b 1)
 
-echo docker-runner: executing docker compose build (without cache)
-docker-compose build --no-cache || (echo docker-compose build failed & exit /b 1)
+echo docker-runner: executing docker compose build
+docker-compose build || (echo docker-compose build failed & exit /b 1)
 
 echo docker-runner: executing docker compose up
 docker-compose up -d || (echo docker-compose up failed & exit /b 1)

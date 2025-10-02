@@ -1,7 +1,7 @@
-$path = Get-Location
+п»ї$path = Get-Location
 $files = Get-ChildItem -Path $path -Recurse -Filter *.cs
 
-# Функция для проверки наличия кириллических символов
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅР°Р»РёС‡РёСЏ РєРёСЂРёР»Р»РёС‡РµСЃРєРёС… СЃРёРјРІРѕР»РѕРІ
 function Contains-Cyrillic {
     param (
         [string]$text
@@ -9,7 +9,7 @@ function Contains-Cyrillic {
     return $text -match '[u0400-u04FF]'
 }
 
-# Ищем файлы, содержащие кириллицу
+# РС‰РµРј С„Р°Р№Р»С‹, СЃРѕРґРµСЂР¶Р°С‰РёРµ РєРёСЂРёР»Р»РёС†Сѓ
 foreach ($file in $files) {
     $content = Get-Content -Path $file.FullName -Raw
     if (Contains-Cyrillic $content) {
