@@ -1,9 +1,8 @@
-﻿@echo off
+@echo off
 
 setlocal enabledelayedexpansion
 
 :: paths (to .exe files or .lnk)
-:: input yours
 set "docker_path=C:\Program Files\Docker\Docker\Docker Desktop.exe"
 set "linkpad_path=________\LINQPad8.exe"
 set "beaver_path=________\dbeaver.exe"
@@ -32,18 +31,7 @@ call :check_and_run "%visualstudio_name%" "%visualstudio_path%"
 
 echo all programs are running.
 
-:: try to show the window if it is minimized
-call :show-window "%docker_name%"
-call :show-window "%linkpad_name%"
-call :show-window "%beaver_name%"
-call :show-window "%obsidian_name%"
-call :show-window "%telegram_name%"
-call :show-window "%visualstudio_name%"
-
-echo end.
-echo press any key to exit.
-pause
-exit
+goto :end
 
 :check_and_run
 set "program_name=%~1"
@@ -54,8 +42,8 @@ if %errorlevel%==0 (
     echo %program_name% is already running.
 ) else (
     if exist "%program_path%" (
-        echo Starting %program_name%...
-        start "" "%program_path%"
+        echo starting %program_name%...
+        cmd /c start "" /b "%program_path%" >nul 2>&1
         timeout /t 5 >nul
     ) else (
         echo %program_name% executable not found at %program_path%
@@ -63,11 +51,10 @@ if %errorlevel%==0 (
 )
 exit /b
 
-:show-window
-set "program_name=%~1"
+:end
+echo end.
 
-echo try show window of %program_name%
-:: some code for expanding the window
-exit /b
+timeout /t 5
+exit
 
 endlocal
