@@ -9,7 +9,12 @@
 ## powershell
 
 - find-cyrillic
+- find-cyrillic-explains
 
 ## one-line
 
 - windows (cmd / powershell)
+
+## cs
+
+- emoji_printer
