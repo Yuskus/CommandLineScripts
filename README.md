@@ -10,6 +10,7 @@
 
 - find-cyrillic
 - find-cyrillic-explains
+- tree
 
 ## one-line
 

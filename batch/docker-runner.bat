@@ -28,14 +28,8 @@ if %errorlevel% neq 0 (
 
 echo docker-runner: started
 
-echo docker-runner: executing docker compose down
-docker-compose down || (echo docker-compose down failed & exit /b 1)
-
-echo docker-runner: executing docker compose build
-docker-compose build || (echo docker-compose build failed & exit /b 1)
-
 echo docker-runner: executing docker compose up
-docker-compose up -d || (echo docker-compose up failed & exit /b 1)
+docker-compose up --build -d || (echo docker-compose up failed & exit /b 1)
 
 echo docker-runner: ended
 
